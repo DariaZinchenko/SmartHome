@@ -1,15 +1,16 @@
 package ru.netology.domain;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 public class Radio {
-    private int currentRadioStation;
-    private int volume;
+    @Getter private int currentRadioStation;
+    @Getter private int volume;
 
-    private int numberOfRadioStation = 10;
-    private int minVolume = 0;
-    private int maxVolume = 100;
-
-    public Radio() {
-    }
+    @Getter private int numberOfRadioStation = 10;
+    @Getter private int minVolume = 0;
+    @Getter private int maxVolume = 100;
 
     public Radio(int numberOfRadioStation) {
         if (numberOfRadioStation < 0){
@@ -18,10 +19,6 @@ public class Radio {
         }
 
         this.numberOfRadioStation = numberOfRadioStation;
-    }
-
-    public int getCurrentRadioStation() {
-        return currentRadioStation;
     }
 
     public void setCurrentRadioStation(int currentRadioStation) {
@@ -35,10 +32,6 @@ public class Radio {
         this.currentRadioStation = currentRadioStation;
     }
 
-    public int getVolume() {
-        return volume;
-    }
-
     public void setVolume(int volume) {
         if (volume < minVolume){
             return;
@@ -48,18 +41,6 @@ public class Radio {
         }
 
         this.volume = volume;
-    }
-
-    public int getMinVolume() {
-        return minVolume;
-    }
-
-    public int getMaxVolume() {
-        return maxVolume;
-    }
-
-    public int getNumberOfRadioStation() {
-        return numberOfRadioStation;
     }
 
     public void nextStation() {
