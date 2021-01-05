@@ -1,31 +1,35 @@
 package ru.netology.domain;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 public class Radio {
-    private int currentRadioStation;
-    private int volume;
+    @Getter private int currentRadioStation;
+    @Getter private int volume;
 
-    private int firstRadioStation = 0;
-    private int lastRadioStation = 9;
-    private int minVolume = 0;
-    private int maxVolume = 10;
+    @Getter private int numberOfRadioStation = 10;
+    @Getter private int minVolume = 0;
+    @Getter private int maxVolume = 100;
 
-    public int getCurrentRadioStation() {
-        return currentRadioStation;
+    public Radio(int numberOfRadioStation) {
+        if (numberOfRadioStation < 0){
+            this.numberOfRadioStation = 0;
+            return;
+        }
+
+        this.numberOfRadioStation = numberOfRadioStation;
     }
 
     public void setCurrentRadioStation(int currentRadioStation) {
-        if (currentRadioStation < firstRadioStation){
+        if (currentRadioStation < 0){
             return;
         }
-        if (currentRadioStation > lastRadioStation){
+        if (currentRadioStation > numberOfRadioStation - 1){
             return;
         }
 
         this.currentRadioStation = currentRadioStation;
-    }
-
-    public int getVolume() {
-        return volume;
     }
 
     public void setVolume(int volume) {
@@ -40,19 +44,20 @@ public class Radio {
     }
 
     public void nextStation() {
-        if (currentRadioStation == lastRadioStation){
-            this.setCurrentRadioStation(firstRadioStation);
+        if (currentRadioStation == numberOfRadioStation - 1){
+            this.setCurrentRadioStation(0);
         } else {
             this.setCurrentRadioStation(currentRadioStation + 1);
         }
     }
 
     public void prevStation() {
-        if (currentRadioStation == firstRadioStation){
-            this.setCurrentRadioStation(lastRadioStation);
+        if (currentRadioStation == 0){
+            this.setCurrentRadioStation(numberOfRadioStation - 1);
         } else {
             this.setCurrentRadioStation(currentRadioStation - 1);
         }
+
     }
 
     public void turnUpVolume() {
